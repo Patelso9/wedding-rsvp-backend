@@ -3,6 +3,8 @@ package com.company.weddingrsvpbackend.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.net.Inet4Address;
 import java.util.Objects;
 
@@ -15,14 +17,23 @@ public class Guests {
     @Column(name = "guest_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @NotEmpty(message = "Please enter the guests first name.")
     private String firstName;
+    @NotEmpty(message = "Please enter the guests last name.")
     private String lastName;
+    @NotEmpty(message = "Please enter the guests email.")
     private String email;
+    @NotNull(message = "Please enter the guests phone number.")
     private long phoneNumber;
+    @NotEmpty(message = "Please enter the street address.")
     private String street;
+    @NotEmpty(message = "Please enter the city.")
     private String city;
+    @NotEmpty(message = "Please enter the state.")
     private String state;
+    @NotEmpty(message = "Please enter the zipcode.")
     private String zipcode;
+    @NotNull(message = "Please enter the number of people that are attending.")
     private int numberAttending;
 
     public Guests() {
