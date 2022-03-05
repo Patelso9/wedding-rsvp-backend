@@ -5,9 +5,10 @@ import com.company.weddingrsvpservice.model.RsvpGuests;
 import com.company.weddingrsvpservice.repository.EventRepository;
 import com.company.weddingrsvpservice.repository.GuestRepository;
 import com.company.weddingrsvpservice.viewmodel.RsvpViewModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -26,37 +27,22 @@ public class RsvpService {
         this.eventRepository = eventRepository;
         this.guestRepository = guestRepository;
     }
-    @Transactional
-    public RsvpViewModel saveEvent(RsvpViewModel rsvpViewModel){
 
-        RsvpEvent event = new RsvpEvent();
-        //Getting guest ID
-        event.setGuestId(rsvpViewModel.getRsvpGuests().getId());
-        event.setGuestName(rsvpViewModel.getGuestName());
-        event.setTotalAttending(rsvpViewModel.getTotalAttending());
-        event.setDescription(rsvpViewModel.getDescription());
-        event = eventRepository.save(event);
-        rsvpViewModel.setId(event.getId());
+     private RsvpViewModel buildRsvpViewModel(RsvpEvent event){
 
-        List<RsvpGuests> eventList = Collections.singletonList(rsvpViewModel.getRsvpGuests());
+         List<RsvpGuests> eventList = guestRepository.findAllGuestByEmail(event.getGuestEmail());
+           RsvpViewModel rvm = new RsvpViewModel();
+           rvm.setId(event.getId());
 
-        eventList.stream()
-                .forEach(t -> {
-                    t.setEvent_id(rsvpViewModel.getId());
-                    guestRepository.save(t);
-                });
+           rvm.setGuestName(event.getGuestName());
+           rvm.setGuestEmail(event.getGuestEmail());
+           rvm.setDescription(event.getDescription());
+           rvm.setTotalAttending(event.getTotalAttending());
+           rvm.getEventList();
 
-        eventList = guestRepository.findAllGuestByGuestId(rsvpViewModel.getId());
-        rsvpViewModel.setRsvpGuests(eventList);
-
-
-
-
-
-        return  rsvpViewModel;
-
-
+           return  rvm;
     }
+
 
 
 
