@@ -25,11 +25,11 @@ INSERT INTO guest(id,name,email,attending) VALUE(3,"Jhon Gallera","john@mail.com
 INSERT INTO guest(id,name,email,attending) VALUE(4,"Brian Rey","brian@mail.com",TRUE);
 INSERT INTO guest(id,name,email,attending) VALUE(5,"Mick Miller","mic@mail.com",TRUE);
 
-INSERT INTO guest(id,name,email,attending) VALUE(1,"Bobby Brown","bobby@mail.com",TRUE);
-INSERT INTO guest(id,name,email,attending) VALUE(2,"Ray Charles","rey@mail.com",TRUE);
-INSERT INTO guest(id,name,email,attending) VALUE(3,"Steve Vai","Steve@mail.com",TRUE);
-INSERT INTO guest(id,name,email,attending) VALUE(4,"Brix Mcnight","brix@mail.com",TRUE);
-INSERT INTO guest(id,name,email,attending) VALUE(5,"Tim Allen","tim@mail.com",TRUE);
+INSERT INTO guest(id,name,email,attending) VALUE(6,"Bobby Brown","bobby@mail.com",TRUE);
+INSERT INTO guest(id,name,email,attending) VALUE(7,"Ray Charles","rey@mail.com",TRUE);
+INSERT INTO guest(id,name,email,attending) VALUE(8,"Steve Vai","Steve@mail.com",TRUE);
+INSERT INTO guest(id,name,email,attending) VALUE(9,"Brix Mcnight","brix@mail.com",TRUE);
+INSERT INTO guest(id,name,email,attending) VALUE(10,"Tim Allen","tim@mail.com",TRUE);
 
 select * from event;
 select * from guest;
