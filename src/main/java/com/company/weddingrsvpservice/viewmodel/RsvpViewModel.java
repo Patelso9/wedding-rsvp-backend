@@ -4,17 +4,27 @@ import com.company.weddingrsvpservice.model.RsvpGuests;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RsvpViewModel {
     private  int id;
-    private  int guestId;
+
+
+
+    private  RsvpGuests guestId;
+    private int eventId;
     private String guestName;
     private String guestEmail;
     private int totalAttending;
     private String description;
     private List<RsvpGuests> eventList = new ArrayList<>();
 
+   public void setRsvpGuests(List<RsvpGuests> eventList){
+       this.guestId = guestId;
+   }
+
+    public RsvpGuests guestId() {
+       return guestId;
+    }
     public int getId() {
         return id;
     }
@@ -23,11 +33,15 @@ public class RsvpViewModel {
         this.id = id;
     }
 
-    public int getGuestId() {
+    public RsvpGuests getGuestId() {
         return guestId;
     }
 
-    public void setGuestId(int guestId) {
+    public RsvpGuests getRsvpGuests() {
+        return guestId;
+    }
+
+    public void RsvpGuests () {
         this.guestId = guestId;
     }
 
@@ -69,31 +83,5 @@ public class RsvpViewModel {
 
     public void setEventList(List<RsvpGuests> eventList) {
         this.eventList = eventList;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RsvpViewModel that = (RsvpViewModel) o;
-        return id == that.id && guestId == that.guestId && totalAttending == that.totalAttending && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(description, that.description) && Objects.equals(eventList, that.eventList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, guestId, guestName, guestEmail, totalAttending, description, eventList);
-    }
-
-    @Override
-    public String toString() {
-        return "RsvpViewModel{" +
-                "id=" + id +
-                ", guestId=" + guestId +
-                ", guestName='" + guestName + '\'' +
-                ", guestEmail='" + guestEmail + '\'' +
-                ", totalAttending=" + totalAttending +
-                ", description='" + description + '\'' +
-                ", eventList=" + eventList +
-                '}';
     }
 }
