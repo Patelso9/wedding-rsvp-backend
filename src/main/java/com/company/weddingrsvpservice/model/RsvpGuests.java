@@ -18,6 +18,7 @@ public class RsvpGuests implements Serializable {
     @Column(name = "guest_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int event_id;
     private String name;
     private String email;

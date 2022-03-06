@@ -27,18 +27,19 @@ public class RsvpService {
         this.eventRepository = eventRepository;
         this.guestRepository = guestRepository;
     }
-
+    @Transactional
      private RsvpViewModel buildRsvpViewModel(RsvpEvent event){
 
          List<RsvpGuests> eventList = guestRepository.findAllGuestByEmail(event.getGuestEmail());
            RsvpViewModel rvm = new RsvpViewModel();
-           rvm.setId(event.getId());
+           rvm.setId(event.getGuestId());
 
            rvm.setGuestName(event.getGuestName());
            rvm.setGuestEmail(event.getGuestEmail());
            rvm.setDescription(event.getDescription());
            rvm.setTotalAttending(event.getTotalAttending());
-           rvm.getEventList();
+
+           rvm.setEventList(eventList);
 
            return  rvm;
     }

@@ -15,6 +15,7 @@ create table if not exists guest (
     attending BOOLEAN not null
 );
 
+
 describe event;
 describe guest;
 
@@ -23,7 +24,7 @@ select * from event;
 select * from guest;
 
 /* Foreign Keys */
-alter table guest add constraint fk_guest_event foreign key (event_id) references event(event_id);
+alter table event add constraint fk_event_guest foreign key (event_id) references guest(event_id);
 
 /*Drop Foregin Keys */
-ALTER TABLE event DROP FOREIGN KEY fk_event_guest;
+ALTER TABLE guest DROP FOREIGN KEY fk_guest_event;

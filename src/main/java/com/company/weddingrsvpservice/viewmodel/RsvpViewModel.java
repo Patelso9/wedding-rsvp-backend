@@ -14,6 +14,16 @@ public class RsvpViewModel {
     private String guestEmail;
     private int totalAttending;
     private String description;
+
+    public Boolean getAttending() {
+        return attending;
+    }
+
+    public void setAttending(Boolean attending) {
+        this.attending = attending;
+    }
+
+    private Boolean attending;
     private List<RsvpGuests> eventList = new ArrayList<>();
 
     public int getId() {
