@@ -1,12 +1,8 @@
 package com.company.weddingrsvpservice.repository;
 
-import com.company.weddingrsvpservice.model.RsvpGuests;
+import com.company.weddingrsvpservice.model.Guest;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Repository
-public interface GuestRepository extends JpaRepository<RsvpGuests, Integer> {
-    List<RsvpGuests> findAllGuestByEmail(String email);
+public interface GuestRepository extends JpaRepository<Guest, Integer> {
+    Guest findByUniqueId(String uniqueId);
 }
