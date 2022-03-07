@@ -1,13 +1,13 @@
-package com.company.weddingrsvpbackend;
+package com.company.weddingrsvpservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WeddingRsvpBackendApplication {
+public class WeddingRsvpServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WeddingRsvpBackendApplication.class, args);
+		SpringApplication.run(WeddingRsvpServiceApplication.class, args);
 	}
 
 }
