@@ -11,15 +11,14 @@ import java.util.Objects;
 public class RsvpEvent implements Serializable {
     @Id
     @Column(name = "event_id" )
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  int id;
+    private String eventName;
+    private String location;
 
-    private String guestName;
-    private String guestEmail;
-    private int totalAttending;
-    private String description;
 
     public RsvpEvent() {
+
     }
 
     public int getId() {
@@ -30,36 +29,20 @@ public class RsvpEvent implements Serializable {
         this.id = id;
     }
 
-    public String getGuestName() {
-        return guestName;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setGuestName(String guestName) {
-        this.guestName = guestName;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
-    public String getGuestEmail() {
-        return guestEmail;
+    public String getLocation() {
+        return location;
     }
 
-    public void setGuestEmail(String guestEmail) {
-        this.guestEmail = guestEmail;
-    }
-
-    public int getTotalAttending() {
-        return totalAttending;
-    }
-
-    public void setTotalAttending(int totalAttending) {
-        this.totalAttending = totalAttending;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
@@ -67,22 +50,20 @@ public class RsvpEvent implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RsvpEvent rsvpEvent = (RsvpEvent) o;
-        return id == rsvpEvent.id && totalAttending == rsvpEvent.totalAttending && Objects.equals(guestName, rsvpEvent.guestName) && Objects.equals(guestEmail, rsvpEvent.guestEmail) && Objects.equals(description, rsvpEvent.description);
+        return id == rsvpEvent.id && Objects.equals(eventName, rsvpEvent.eventName) && Objects.equals(location, rsvpEvent.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, guestName, guestEmail, totalAttending, description);
+        return Objects.hash(id, eventName, location);
     }
 
     @Override
     public String toString() {
         return "RsvpEvent{" +
                 "id=" + id +
-                ", guestName='" + guestName + '\'' +
-                ", guestEmail='" + guestEmail + '\'' +
-                ", totalAttending=" + totalAttending +
-                ", description='" + description + '\'' +
+                ", eventName='" + eventName + '\'' +
+                ", location='" + location + '\'' +
                 '}';
     }
 }

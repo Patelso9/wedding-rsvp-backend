@@ -23,11 +23,13 @@ public class RsvpController {
     private EventRepository eventRepository;
     @Autowired
     private GuestRepository guestRepository;
+
     @PostMapping("/rsvpEvent")
     @ResponseStatus(HttpStatus.CREATED)
     public RsvpEvent createEvent(@RequestBody @Valid RsvpEvent event){
-         guest.setGuest_event_id(event.getId());
-         
+        //guest.getGuest_event_id(event.getId());
+        // guest.setGuest_event_id(event.getId());
+
          return eventRepository.save(event);
     }
 

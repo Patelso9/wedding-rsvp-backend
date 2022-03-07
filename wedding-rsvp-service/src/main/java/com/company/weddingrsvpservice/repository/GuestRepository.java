@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface GuestRepository extends JpaRepository<RsvpGuests, Integer> {
-    List<RsvpGuests> findAllGuestByEmail(String email);
+    //List<RsvpGuests> findAllGuestByEmail(String email);
 }
