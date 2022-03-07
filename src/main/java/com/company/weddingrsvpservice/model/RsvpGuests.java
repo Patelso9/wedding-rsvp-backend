@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyIntializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="guest")
 public class RsvpGuests extends RsvpEvent{
 
