@@ -1,10 +1,10 @@
-package com.company.weddingrsvpbackend;
+package com.company.weddingrsvpservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WeddingRsvpBackendApplicationTests {
+class WeddingRsvpServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
