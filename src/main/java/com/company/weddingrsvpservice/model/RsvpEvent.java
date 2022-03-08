@@ -13,6 +13,7 @@ public class RsvpEvent implements Serializable {
     @Column(name = "event_id" )
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  int id;
+
     private String eventName;
     private String location;
 

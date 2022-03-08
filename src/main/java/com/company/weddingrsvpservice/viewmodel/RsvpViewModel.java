@@ -2,29 +2,30 @@ package com.company.weddingrsvpservice.viewmodel;
 
 import com.company.weddingrsvpservice.model.RsvpGuests;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class RsvpViewModel {
     private int id;
-    //private  RsvpGuests guest_Id;
-    private int eventId;
-    private String guestName;
+    private int guest_event_id;
+    private RsvpGuests guests;
+    private String eventName;
+    private String location;
     private String guestEmail;
-    private int totalAttending;
-    private String description;
+    private Boolean attending;
 
-    public Boolean getAttending() {
-        return attending;
+    public RsvpViewModel() {
     }
 
-    public void setAttending(Boolean attending) {
+    public RsvpViewModel(int id, int guest_event_id, RsvpGuests guests, String eventName, String location, String guestEmail, Boolean attending) {
+        this.id = id;
+        this.guest_event_id = guest_event_id;
+        this.guests = guests;
+        this.eventName = eventName;
+        this.location = location;
+        this.guestEmail = guestEmail;
         this.attending = attending;
     }
-
-    private Boolean attending;
-    private List<RsvpGuests> eventList = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -34,20 +35,36 @@ public class RsvpViewModel {
         this.id = id;
     }
 
-    public int getEventId() {
-        return eventId;
+    public int getGuest_event_id() {
+        return guest_event_id;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setGuest_event_id(int guest_event_id) {
+        this.guest_event_id = guest_event_id;
     }
 
-    public String getGuestName() {
-        return guestName;
+    public RsvpGuests getGuests() {
+        return guests;
     }
 
-    public void setGuestName(String guestName) {
-        this.guestName = guestName;
+    public void setGuests(RsvpGuests guests) {
+        this.guests = guests;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getGuestEmail() {
@@ -58,28 +75,12 @@ public class RsvpViewModel {
         this.guestEmail = guestEmail;
     }
 
-    public int getTotalAttending() {
-        return totalAttending;
+    public Boolean getAttending() {
+        return attending;
     }
 
-    public void setTotalAttending(int totalAttending) {
-        this.totalAttending = totalAttending;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<RsvpGuests> getEventList() {
-        return eventList;
-    }
-
-    public void setEventList(List<RsvpGuests> eventList) {
-        this.eventList = eventList;
+    public void setAttending(Boolean attending) {
+        this.attending = attending;
     }
 
     @Override
@@ -87,24 +88,24 @@ public class RsvpViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RsvpViewModel that = (RsvpViewModel) o;
-        return id == that.id && eventId == that.eventId && totalAttending == that.totalAttending && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(description, that.description) && Objects.equals(eventList, that.eventList);
+        return id == that.id && guest_event_id == that.guest_event_id && Objects.equals(guests, that.guests) && Objects.equals(eventName, that.eventName) && Objects.equals(location, that.location) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(attending, that.attending);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, eventId, guestName, guestEmail, totalAttending, description, eventList);
+        return Objects.hash(id, guest_event_id, guests, eventName, location, guestEmail, attending);
     }
 
     @Override
     public String toString() {
         return "RsvpViewModel{" +
                 "id=" + id +
-                ", eventId=" + eventId +
-                ", guestName='" + guestName + '\'' +
+                ", guest_event_id=" + guest_event_id +
+                ", guests=" + guests +
+                ", eventName='" + eventName + '\'' +
+                ", location='" + location + '\'' +
                 ", guestEmail='" + guestEmail + '\'' +
-                ", totalAttending=" + totalAttending +
-                ", description='" + description + '\'' +
-                ", eventList=" + eventList +
+                ", attending=" + attending +
                 '}';
     }
 }
