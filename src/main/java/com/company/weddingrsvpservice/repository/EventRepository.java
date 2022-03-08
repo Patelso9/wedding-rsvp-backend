@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<RsvpEvent, Integer> {
-//    List<RsvpGuests>findAllGuestByGuestEmail(String email);
+//    List<RsvpEvent>findByEmail(String email);
 
 //    RsvpGuests findByEmail(String email);
 }

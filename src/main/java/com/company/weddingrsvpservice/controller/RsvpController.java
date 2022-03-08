@@ -20,24 +20,40 @@ public class RsvpController {
 
 //    RsvpGuests guest = new RsvpGuests();
 
-    public static List<RsvpEvent> eventsList = new ArrayList<>(Arrays.asList(
-            new RsvpEvent(1, "Mehndi", "New York"),
-            new RsvpEvent(2, "Sangeet", "Chicago"),
-            new RsvpEvent(3, "Reception", "LA")
-    ));
+//    public static List<RsvpEvent> eventsList = new ArrayList<>(Arrays.asList(
+//            new RsvpEvent(1, "Mehndi", "New York"),
+//            new RsvpEvent(2, "Sangeet", "Chicago"),
+//            new RsvpEvent(3, "Reception", "LA")
+//    ));
 
     @Autowired
     private EventRepository eventRepository;
     @Autowired
     private GuestRepository guestRepository;
 
-    @GetMapping("/events/{email}")
+    @GetMapping("/events")
     @ResponseStatus(value = HttpStatus.OK)
-    public RsvpEvent findEvents(@PathVariable String email) {
-        guestRepository.findAllGuestByEmail(email);
-
-        return null;
+    public List<RsvpEvent> getAllEvents() {
+        return eventRepository.findAll();
     }
+
+    @GetMapping("/guests")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<RsvpGuests> getAllGuests() {
+        return guestRepository.findAll();
+    }
+
+//    @GetMapping("/event/{email}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public RsvpGuests getGuestsList(@PathVariable String guestEmail) {
+//        RsvpGuests guestsList = guestRepository.findByEmail(guestEmail);
+//
+//        if(guestsList == null) {
+//            return null;
+//        } else {
+//            return guestsList;
+//        }
+//    }
 
 
     @PostMapping("/rsvpEvent")

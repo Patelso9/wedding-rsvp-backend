@@ -16,7 +16,7 @@ public class RsvpGuests {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private List<RsvpEvent> event_id;
+    private int event_id;
     @NotNull(message = "Please enter your full name.")
     private String guestName;
     @NotNull(message = "Please enter your email.")
@@ -30,7 +30,6 @@ public class RsvpGuests {
     }
 
 
-
     public int getId() {
         return id;
     }
@@ -39,11 +38,11 @@ public class RsvpGuests {
         this.id = id;
     }
 
-    public List<RsvpEvent> getEvent_id() {
+    public int getEvent_id() {
         return event_id;
     }
 
-    public void setEvent_id(List<RsvpEvent> event_id) {
+    public void setEvent_id(int event_id) {
         this.event_id = event_id;
     }
 
@@ -84,7 +83,7 @@ public class RsvpGuests {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RsvpGuests that = (RsvpGuests) o;
-        return id == that.id && Objects.equals(event_id, that.event_id) && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
+        return id == that.id && event_id == that.event_id && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
     }
 
     @Override
