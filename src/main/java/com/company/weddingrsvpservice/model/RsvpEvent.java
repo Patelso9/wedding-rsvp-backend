@@ -17,6 +17,11 @@ public class RsvpEvent implements Serializable {
     private String eventName;
     private String location;
 
+    public RsvpEvent(int id, String eventName, String location) {
+        this.id = id;
+        this.eventName = eventName;
+        this.location = location;
+    }
 
     public RsvpEvent() {
 

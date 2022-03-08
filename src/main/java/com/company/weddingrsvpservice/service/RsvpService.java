@@ -51,6 +51,7 @@ public class RsvpService {
 //        return rvm;
 //
 //    }
+<<<<<<< HEAD
     @Transactional
     public RsvpViewModel buildRsvpViewModel1(String guestEmail){
 
@@ -91,6 +92,51 @@ public class RsvpService {
 
      }
 //    public RsvpViewModel findByEmail(String guestEmail){
+=======
+////    @Transactional
+////     private RsvpViewModel buildRsvpViewModel(RsvpEvent event){
+////
+////         List<RsvpGuests> eventList = guestRepository.findAllGuestByEmail();
+////           RsvpViewModel rvm = new RsvpViewModel();
+////           rvm.setId(event.getId());
+////
+////
+////
+////           rvm.setDescription(event.getDescription());
+////           rvm.setTotalAttending(event.getTotalAttending());
+////
+////           rvm.setEventList(eventList);
+////
+////           return  rvm;
+////    }
+//
+//    public RsvpViewModel findEvent(int id) {
+//
+//        Optional<RsvpEvent> events = eventRepository.findById(id);
+//
+//        return events.isPresent() ? buildEventViewModel(events.get()) : null;
+//
+//        if(buildEventViewModel(events.get()) == )
+//
+//    }
+//
+//    private RsvpViewModel buildEventViewModel(RsvpEvent events) {
+//
+//        // Get the associated artist
+//        Optional<RsvpGuests> guests = guestRepository.findById(events.getId());
+//
+//
+//        // Assemble the AlbumViewModel
+//        RsvpViewModel evm = new RsvpViewModel();
+//        evm.setId(events.getId());
+//        evm.setEventName(events.getEventName());
+//        evm.setLocation(events.getLocation());
+//        evm.setGuests(guests.get());
+//
+//        return evm;
+//    }
+//
+>>>>>>> 5abf23f627699e59ea32a4c98d3d73c13fd8434f
 //
 //        boolean found = false;
 //        List<RsvpGuests> guests = guestRepository.findAll();
