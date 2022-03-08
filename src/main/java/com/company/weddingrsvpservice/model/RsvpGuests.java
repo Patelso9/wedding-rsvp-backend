@@ -23,6 +23,10 @@ public class RsvpGuests {
     public RsvpGuests() {
     }
 
+    public RsvpGuests(String guestEmail) {
+        this.guestEmail = guestEmail;
+    }
+
     public int getId() {
         return id;
     }
