@@ -1,30 +1,25 @@
-package com.company.weddingrsvpservice.model;
+package com.company.weddingrsvpservice.viewmodel;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.*;
-import java.io.Serializable;
+import com.company.weddingrsvpservice.model.RsvpGuests;
+
 import java.util.Objects;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "event")
-public class RsvpEvent implements Serializable {
-    @Id
-    @Column(name = "event_id" )
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id;
+public class EventsViewModel {
 
+    private int id;
+    private RsvpGuests guests;
     private String eventName;
     private String location;
 
-    public RsvpEvent(int id, String eventName, String location) {
-        this.id = id;
-        this.eventName = eventName;
-        this.location = location;
+
+    public EventsViewModel() {
     }
 
-    public RsvpEvent() {
-
+    public EventsViewModel(int id, RsvpGuests guests, String eventName, String location) {
+        this.id = id;
+        this.guests = guests;
+        this.eventName = eventName;
+        this.location = location;
     }
 
     public int getId() {
@@ -33,6 +28,14 @@ public class RsvpEvent implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public RsvpGuests getGuests() {
+        return guests;
+    }
+
+    public void setGuests(RsvpGuests guests) {
+        this.guests = guests;
     }
 
     public String getEventName() {
@@ -55,19 +58,20 @@ public class RsvpEvent implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RsvpEvent rsvpEvent = (RsvpEvent) o;
-        return id == rsvpEvent.id && Objects.equals(eventName, rsvpEvent.eventName) && Objects.equals(location, rsvpEvent.location);
+        EventsViewModel that = (EventsViewModel) o;
+        return id == that.id && Objects.equals(guests, that.guests) && Objects.equals(eventName, that.eventName) && Objects.equals(location, that.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, eventName, location);
+        return Objects.hash(id, guests, eventName, location);
     }
 
     @Override
     public String toString() {
-        return "RsvpEvent{" +
+        return "EventsViewModel{" +
                 "id=" + id +
+                ", guests=" + guests +
                 ", eventName='" + eventName + '\'' +
                 ", location='" + location + '\'' +
                 '}';
