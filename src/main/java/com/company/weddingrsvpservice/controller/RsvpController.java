@@ -9,33 +9,16 @@ import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
 import com.company.weddingrsvpservice.viewmodel.RsvpViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
 
-=======
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Arrays;
->>>>>>> 5abf23f627699e59ea32a4c98d3d73c13fd8434f
 import java.util.List;
+import java.util.Set;
 
 @RestController
-@Validated
 public class RsvpController {
 
-//    RsvpGuests guest = new RsvpGuests();
-
-    public static List<RsvpEvent> eventsList = new ArrayList<>(Arrays.asList(
-            new RsvpEvent(1, "Mehndi", "New York"),
-            new RsvpEvent(2, "Sangeet", "Chicago"),
-            new RsvpEvent(3, "Reception", "LA")
-    ));
-
-
-
+    RsvpEvent event = new RsvpEvent();
+    RsvpGuests guest = new RsvpGuests();
 
 
     @Autowired
@@ -46,62 +29,74 @@ public class RsvpController {
     private RsvpService rsvpService;
 
 
-
-    @GetMapping("/events/{email}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public RsvpEvent findEvents(@PathVariable String email) {
-        guestRepository.findAllGuestByEmail(email);
-
-        return null;
-    }
-
-
     @PostMapping("/rsvpEvent")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RsvpEvent createEvent(@RequestBody RsvpEvent event){
+    public RsvpEvent createEvent(@RequestBody RsvpEvent event) {
         //guest.getGuest_event_id(event.getId());
         // guest.setGuest_event_id(event.getId());
 
-         return eventRepository.save(event);
+        return eventRepository.save(event);
+    }
+
+    @PostMapping("/rsvpEvent/addEventGuest")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public RsvpEvent createEventAndGuest(@RequestBody RsvpEvent event) {
+        RsvpEvent e = eventRepository.save(event);
+
+        if (!event.getGuests().isEmpty()) {
+            Set<RsvpGuests> guests = event.getGuests();
+            for (RsvpGuests g : guests) {
+                g.setGuestId(e.getId());
+                guestRepository.save(g);
+            }
+        }
+        return e;
+
     }
 
     @PostMapping("/rsvpGuest")
-<<<<<<< HEAD
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RsvpGuests createGuest(@RequestBody  RsvpGuests guests){
-=======
-    @ResponseStatus(HttpStatus.CREATED)
-    public RsvpGuests createEvent(@RequestBody @Valid RsvpGuests guests){
->>>>>>> 5abf23f627699e59ea32a4c98d3d73c13fd8434f
+    public RsvpGuests createGuest(@RequestBody RsvpGuests guests) {
         //guest.getGuest_event_id(event.getId());
         // guest.setGuest_event_id(event.getId());
 
         return guestRepository.save(guests);
     }
-<<<<<<< HEAD
-    @GetMapping("/rsvpGuest/search/{email}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public List<RsvpViewModel> displayByEmail(@RequestBody @PathVariable String email) {
-        List<RsvpViewModel> guestEmail = rsvpService.findAllByEmail(email);
-=======
 
+//    @GetMapping("/rsvpGuest/search/{email}")
+//    @ResponseStatus(value = HttpStatus.OK)
+//    public List<RsvpViewModel> displayByEmail(@PathVariable String email) {
+//        List<RsvpViewModel> guestEmail = rsvpService.findAllByEmail(email);
+//
+//
+//        return guestEmail;
+//    }
 
-
-
->>>>>>> 5abf23f627699e59ea32a4c98d3d73c13fd8434f
-
-
-        return guestEmail;
-    }
     @GetMapping("/rsvpEvent/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public EventsViewModel getEventsById(@PathVariable int id) {
-    EventsViewModel evm = rsvpService.findById(id);
+        EventsViewModel evm = rsvpService.findById(id);
 
-    return evm;
+        return evm;
+    }
+
+    @GetMapping("/guest")
+    public List<RsvpGuests> getAllGuest() {
+        return guestRepository.findAll();
+    }
+
+    @GetMapping("/event")
+    public List<RsvpEvent> getAllEvent() {
+        return eventRepository.findAll();
+    }
+
+    @PostMapping("/guest")
+    public RsvpGuests addGuest(@RequestBody RsvpGuests guest) {
+        RsvpGuests c = guestRepository.save(guest);
+        //check if populatenotes input
+        return c;
+    }
 }
-
-
 
 
 
@@ -118,5 +113,5 @@ public class RsvpController {
 //        }
 //        return found;
 
-    }
+
 

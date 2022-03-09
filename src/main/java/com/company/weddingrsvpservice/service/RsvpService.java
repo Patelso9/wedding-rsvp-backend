@@ -3,21 +3,15 @@ package com.company.weddingrsvpservice.service;
 import com.company.weddingrsvpservice.model.RsvpEvent;
 import com.company.weddingrsvpservice.model.RsvpGuests;
 import com.company.weddingrsvpservice.repository.EventRepository;
-
 import com.company.weddingrsvpservice.repository.GuestRepository;
 import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
 import com.company.weddingrsvpservice.viewmodel.RsvpViewModel;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class RsvpService {
@@ -34,12 +28,13 @@ public class RsvpService {
     }
 
 
+
 //    @Transactional
 //    public RsvpViewModel buildRsvpViewModel1(String guestEmail){
 //
-//        List<RsvpViewModel> guestsList = findAllByEmail(guest.getGuestEmail());
+//        RsvpViewModel guestsList = (RsvpViewModel) findAllByEmail(guestEmail);
 //
-//      //Assemble the RsvpViewModel
+//        //Assemble the RsvpViewModel
 //        RsvpViewModel rvm = new RsvpViewModel();
 //        rvm.setId(event.getId());
 //        rvm.setGuest_event_id(event.getId());
@@ -47,28 +42,10 @@ public class RsvpService {
 //        rvm.setLocation(event.getLocation());
 //        rvm.setGuestEmail(guest.getGuestEmail());
 //        rvm.setAttending(guest.getAttending());
-//        rvm.setGuests(guestsList);
+//       // rvm.setGuests(guestsList);
 //        return rvm;
 //
 //    }
-<<<<<<< HEAD
-    @Transactional
-    public RsvpViewModel buildRsvpViewModel1(String guestEmail){
-
-        List<RsvpViewModel> guestsList = findAllByEmail(guestEmail);
-
-        //Assemble the RsvpViewModel
-        RsvpViewModel rvm = new RsvpViewModel();
-        rvm.setId(event.getId());
-        rvm.setGuest_event_id(event.getId());
-        rvm.setEventName(event.getEventName());
-        rvm.setLocation(event.getLocation());
-        rvm.setGuestEmail(guest.getGuestEmail());
-        rvm.setAttending(guest.getAttending());
-       // rvm.setGuests(guestsList);
-        return rvm;
-
-    }
     private EventsViewModel buildEventViewModel(RsvpEvent events) {
 
         // Get the associated artist
@@ -91,96 +68,48 @@ public class RsvpService {
 
 
      }
-//    public RsvpViewModel findByEmail(String guestEmail){
-=======
-////    @Transactional
-////     private RsvpViewModel buildRsvpViewModel(RsvpEvent event){
-////
-////         List<RsvpGuests> eventList = guestRepository.findAllGuestByEmail();
-////           RsvpViewModel rvm = new RsvpViewModel();
-////           rvm.setId(event.getId());
-////
-////
-////
-////           rvm.setDescription(event.getDescription());
-////           rvm.setTotalAttending(event.getTotalAttending());
-////
-////           rvm.setEventList(eventList);
-////
-////           return  rvm;
-////    }
+     //FUNCTIONS CRUD
+     //Add
+     //Update
+    //Delete
+    //View All events
+    //View all events by Id
+    //View all guest by event Id
+
+
+//    public List<EventsViewModel> findAllByEmail(String guestEmail) {
+//       RsvpGuests foundGuest = null;
+//        List<RsvpGuests> guestsList = guestRepository.findAll();
+//        List<EventsViewModel> evm = Collections.singletonList(new EventsViewModel());
+//        for (RsvpGuests guests : guestsList) {
+//                //validates
+//            if (guests.getGuestEmail().equals(guestEmail)) {
 //
-//    public RsvpViewModel findEvent(int id) {
+//                //if(!event.getGuests().isEmpty()){
+//                    Set<RsvpGuests> guests1 = (Set<RsvpGuests>) guests;
+//                    for(RsvpGuests g : guests1){
+//                        if(g.getId() == event.getId())
+//                            foundGuest = g;
+//                        evm.add(foundGuest);
+//                        break;
+//                            //g.setGuestId(event.getId());
 //
-//        Optional<RsvpEvent> events = eventRepository.findById(id);
+//                    }
+//                //}
 //
-//        return events.isPresent() ? buildEventViewModel(events.get()) : null;
-//
-//        if(buildEventViewModel(events.get()) == )
-//
-//    }
-//
-//    private RsvpViewModel buildEventViewModel(RsvpEvent events) {
-//
-//        // Get the associated artist
-//        Optional<RsvpGuests> guests = guestRepository.findById(events.getId());
-//
-//
-//        // Assemble the AlbumViewModel
-//        RsvpViewModel evm = new RsvpViewModel();
-//        evm.setId(events.getId());
-//        evm.setEventName(events.getEventName());
-//        evm.setLocation(events.getLocation());
-//        evm.setGuests(guests.get());
-//
-//        return evm;
-//    }
-//
->>>>>>> 5abf23f627699e59ea32a4c98d3d73c13fd8434f
-//
-//        boolean found = false;
-//        List<RsvpGuests> guests = guestRepository.findAll();
-//        for(RsvpGuests guest : guests){
-//            if(guest.getGuestEmail().equals(guestEmail)){
-//               // RsvpViewModel rvm = buildRsvpViewModel1(String.valueOf(guest.getGuestEmail()));
-//                found = true;
-//
-//                //avmList.add(rvm);
-//                // = true;
-//               // break;
 //            }
-//        }return found ? buildRsvpViewModel1(guest.getGuestEmail()) : null;
+//
+//        }
+//        if (!foundGuest) {
+//            try {
+//                throw new ClassNotFoundException("Email not Found");
+//            } catch (ClassNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return evm;
+//
 //    }
-    public List<RsvpViewModel> findAllByEmail(String guestEmail) {
-        List<RsvpGuests> guestsList = guestRepository.findAll();
-        List<RsvpViewModel> avmList = new ArrayList<>();
-
-        // int index = 0;
-        boolean found = false;
-        for (RsvpGuests guests : guestsList) {
-
-            if (guests.getGuestEmail().equals(guestEmail)) {
-
-                RsvpViewModel rvm = buildRsvpViewModel1(String.valueOf(guests.getGuestEmail()));
-                avmList.add(rvm);
-                found = true;
-                break;
-
-
-            }
-
-            // index ++;
-        }
-        if (!found) {
-            try {
-                throw new ClassNotFoundException("Email not Found");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        return found ? Collections.singletonList(buildRsvpViewModel1(guest.getGuestEmail())) : null;
-
-    }
         public void saveGuest(RsvpGuests guest){
          guestRepository.save(guest);
         }
