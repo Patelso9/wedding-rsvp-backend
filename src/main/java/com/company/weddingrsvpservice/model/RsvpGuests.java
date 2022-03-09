@@ -1,9 +1,10 @@
 package com.company.weddingrsvpservice.model;
 
-import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
+//import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +15,11 @@ public class RsvpGuests {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
+//    @NotNull(message = "Please enter your full name.")
     @Column(name = "guest_id" )
     private Integer guestId;
+
 
     private String guestName;
     private String guestEmail;
@@ -86,8 +90,8 @@ public class RsvpGuests {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RsvpGuests guests = (RsvpGuests) o;
-        return id == guests.id && Objects.equals(guestId, guests.guestId) && Objects.equals(guestName, guests.guestName) && Objects.equals(guestEmail, guests.guestEmail) && Objects.equals(totalInvited, guests.totalInvited) && Objects.equals(attending, guests.attending);
+        RsvpGuests that = (RsvpGuests) o;
+        return id == that.id && Objects.equals(guestId, that.guestId) && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
     }
 
     @Override
