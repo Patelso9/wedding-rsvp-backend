@@ -45,6 +45,14 @@ public class RsvpController {
         return guestRepository.findAll();
     }
 
+    @GetMapping("/guests/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public Optional<RsvpGuests> findGuestById (@PathVariable int id) {
+        Optional<RsvpGuests> foundById = guestRepository.findById(id);
+
+        return foundById;
+    }
+
 
 
     @PostMapping("/rsvpEvent")
@@ -86,6 +94,36 @@ public class RsvpController {
         } else {
             return foundEvent;
         }
+    }
+
+    @PutMapping("/guests/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updateGuestById (@PathVariable int id, @RequestBody RsvpGuests guests) {
+        if(guests.getId() != id) {
+            throw new IllegalArgumentException("Id's don't match");
+        }
+        guestRepository.save(guests);
+    }
+
+    @DeleteMapping("/guests/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteGuestById(@PathVariable int id) {
+        guestRepository.deleteById(id);
+    }
+
+    @PutMapping("/events/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updateEventById (@PathVariable int id, @RequestBody RsvpEvent event) {
+        if(event.getId() != id) {
+            throw new IllegalArgumentException("Id's don't match");
+        }
+        eventRepository.save(event);
+    }
+
+    @DeleteMapping("/events/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteEventById(@PathVariable int id) {
+        eventRepository.deleteById(id);
     }
 }
 
