@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<RsvpEvent, Integer> {
-<<<<<<< HEAD
 //    List<RsvpEvent>findByEmail(String email);
 
     //List<RsvpGuests>findAllGuestByGuestEmail(String email);
@@ -20,8 +19,6 @@ public interface EventRepository extends JpaRepository<RsvpEvent, Integer> {
 
 //    RsvpGuests findByEmail(String email);
 
-=======
     //List<RsvpGuests>findAllGuestByGuestEmail(String email);
 
->>>>>>> a12445ca8d1761347c463130c4770d8d3af6bb76
 }

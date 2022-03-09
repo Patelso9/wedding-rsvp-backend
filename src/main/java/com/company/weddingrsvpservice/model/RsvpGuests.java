@@ -1,6 +1,6 @@
 package com.company.weddingrsvpservice.model;
 
-import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
+//import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -16,8 +16,7 @@ public class RsvpGuests {
     private int id;
 
 
-    private int event_id;
-    @NotNull(message = "Please enter your full name.")
+//    @NotNull(message = "Please enter your full name.")
     @Column(name = "guest_id" )
     private Integer guestId;
 
@@ -30,9 +29,8 @@ public class RsvpGuests {
     public RsvpGuests() {
     }
 
-    public RsvpGuests(int id, int event_id, Integer guestId, String guestName, String guestEmail, Integer totalInvited, Boolean attending) {
+    public RsvpGuests(int id, Integer guestId, String guestName, String guestEmail, Integer totalInvited, Boolean attending) {
         this.id = id;
-        this.event_id = event_id;
         this.guestId = guestId;
         this.guestName = guestName;
         this.guestEmail = guestEmail;
@@ -46,14 +44,6 @@ public class RsvpGuests {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getEvent_id() {
-        return event_id;
-    }
-
-    public void setEvent_id(int event_id) {
-        this.event_id = event_id;
     }
 
     public Integer getGuestId() {
@@ -101,19 +91,18 @@ public class RsvpGuests {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RsvpGuests that = (RsvpGuests) o;
-        return id == that.id && event_id == that.event_id && Objects.equals(guestId, that.guestId) && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
+        return id == that.id && Objects.equals(guestId, that.guestId) && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, event_id, guestId, guestName, guestEmail, totalInvited, attending);
+        return Objects.hash(id, guestId, guestName, guestEmail, totalInvited, attending);
     }
 
     @Override
     public String toString() {
         return "RsvpGuests{" +
                 "id=" + id +
-                ", event_id=" + event_id +
                 ", guestId=" + guestId +
                 ", guestName='" + guestName + '\'' +
                 ", guestEmail='" + guestEmail + '\'' +
