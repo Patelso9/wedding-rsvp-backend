@@ -7,6 +7,7 @@ import java.util.Objects;
 public class EventsViewModel {
 
     private int id;
+
     private RsvpGuests guests;
     private String eventName;
     private Integer totalAttending;
