@@ -1,10 +1,10 @@
 package com.company.weddingrsvpservice.model;
 
+import com.company.weddingrsvpservice.viewmodel.EventsViewModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,23 +12,33 @@ import java.util.Objects;
 @Table(name="guest")
 public class RsvpGuests {
     @Id
-    @Column(name = "guest_id" )
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
     private int event_id;
     @NotNull(message = "Please enter your full name.")
+    @Column(name = "guest_id" )
+    private Integer guestId;
+
+
     private String guestName;
-    @NotNull(message = "Please enter your email.")
     private String guestEmail;
-    @NotNull(message = "Please enter total number of people attending the event.")
-    private String totalInvited;
-    @NotNull(message = "Please inform the admin if you are attending the event.")
+    private Integer totalInvited;
     private Boolean attending;
 
     public RsvpGuests() {
     }
 
+    public RsvpGuests(int id, int event_id, Integer guestId, String guestName, String guestEmail, Integer totalInvited, Boolean attending) {
+        this.id = id;
+        this.event_id = event_id;
+        this.guestId = guestId;
+        this.guestName = guestName;
+        this.guestEmail = guestEmail;
+        this.totalInvited = totalInvited;
+        this.attending = attending;
+    }
 
     public int getId() {
         return id;
@@ -44,6 +54,14 @@ public class RsvpGuests {
 
     public void setEvent_id(int event_id) {
         this.event_id = event_id;
+    }
+
+    public Integer getGuestId() {
+        return guestId;
+    }
+
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
     }
 
     public String getGuestName() {
@@ -62,11 +80,11 @@ public class RsvpGuests {
         this.guestEmail = guestEmail;
     }
 
-    public String getTotalInvited() {
+    public Integer getTotalInvited() {
         return totalInvited;
     }
 
-    public void setTotalInvited(String totalInvited) {
+    public void setTotalInvited(Integer totalInvited) {
         this.totalInvited = totalInvited;
     }
 
@@ -83,12 +101,12 @@ public class RsvpGuests {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RsvpGuests that = (RsvpGuests) o;
-        return id == that.id && event_id == that.event_id && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
+        return id == that.id && event_id == that.event_id && Objects.equals(guestId, that.guestId) && Objects.equals(guestName, that.guestName) && Objects.equals(guestEmail, that.guestEmail) && Objects.equals(totalInvited, that.totalInvited) && Objects.equals(attending, that.attending);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, event_id, guestName, guestEmail, totalInvited, attending);
+        return Objects.hash(id, event_id, guestId, guestName, guestEmail, totalInvited, attending);
     }
 
     @Override
@@ -96,9 +114,10 @@ public class RsvpGuests {
         return "RsvpGuests{" +
                 "id=" + id +
                 ", event_id=" + event_id +
+                ", guestId=" + guestId +
                 ", guestName='" + guestName + '\'' +
                 ", guestEmail='" + guestEmail + '\'' +
-                ", totalInvited='" + totalInvited + '\'' +
+                ", totalInvited=" + totalInvited +
                 ", attending=" + attending +
                 '}';
     }
