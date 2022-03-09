@@ -15,15 +15,16 @@ public class RsvpGuests {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-
-//    @NotNull(message = "Please enter your full name.")
     @Column(name = "guest_id" )
     private Integer guestId;
 
-
+    @NotNull(message = "Please enter your full name.")
     private String guestName;
+    @NotNull(message = "Please enter your email.")
     private String guestEmail;
+    @NotNull(message = "Please enter total guest invited.")
     private Integer totalInvited;
+    @NotNull(message = "Please enter number of people attending.")
     private Boolean attending;
 
     public RsvpGuests() {

@@ -9,14 +9,17 @@ import com.company.weddingrsvpservice.repository.GuestRepository;
 //import com.company.weddingrsvpservice.viewmodel.RsvpViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@Validated
 public class RsvpController {
 
 
@@ -28,8 +31,6 @@ public class RsvpController {
     private EventRepository eventRepository;
     @Autowired
     private GuestRepository guestRepository;
-//    @Autowired
-//    private RsvpService rsvpService;
 
 
 
@@ -57,21 +58,21 @@ public class RsvpController {
 
     @PostMapping("/rsvpEvent")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RsvpEvent createEvent(@RequestBody RsvpEvent event) {
+    public RsvpEvent createEvent(@RequestBody @Valid RsvpEvent event) {
 
         return eventRepository.save(event);
     }
 
     @PostMapping("/rsvpGuest")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RsvpGuests createGuest(@RequestBody RsvpGuests guests) {
+    public RsvpGuests createGuest(@RequestBody @Valid RsvpGuests guests) {
 
         return guestRepository.save(guests);
     }
 
     @PostMapping("/rsvpEvent/addEventGuest")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RsvpEvent createEventAndGuest(@RequestBody RsvpEvent event) {
+    public RsvpEvent createEventAndGuest(@RequestBody @Valid RsvpEvent event) {
         RsvpEvent e = eventRepository.save(event);
 
         if (!event.getGuests().isEmpty()) {
@@ -86,6 +87,7 @@ public class RsvpController {
     }
 
     @GetMapping("/events/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
     public Optional<RsvpEvent> findEventById(@PathVariable int id) {
         Optional<RsvpEvent> foundEvent = eventRepository.findById(id);
 
@@ -98,7 +100,7 @@ public class RsvpController {
 
     @PutMapping("/guests/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void updateGuestById (@PathVariable int id, @RequestBody RsvpGuests guests) {
+    public void updateGuestById (@PathVariable int id, @RequestBody @Valid RsvpGuests guests) {
         if(guests.getId() != id) {
             throw new IllegalArgumentException("Id's don't match");
         }
@@ -113,7 +115,7 @@ public class RsvpController {
 
     @PutMapping("/events/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void updateEventById (@PathVariable int id, @RequestBody RsvpEvent event) {
+    public void updateEventById (@PathVariable int id, @RequestBody @Valid RsvpEvent event) {
         if(event.getId() != id) {
             throw new IllegalArgumentException("Id's don't match");
         }

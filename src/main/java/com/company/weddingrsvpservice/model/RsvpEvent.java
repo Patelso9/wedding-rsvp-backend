@@ -2,6 +2,7 @@ package com.company.weddingrsvpservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -17,7 +18,9 @@ public class RsvpEvent implements Serializable {
 
     @OneToMany(mappedBy = "guestId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<RsvpGuests> guests;
+    @NotNull(message = "Please enter your event name.")
     private String eventName;
+    @NotNull(message = "Please enter event's location.")
     private String location;
 
 
