@@ -445,16 +445,12 @@ public class RsvpControllerTest {
     @Test
     public void deleteTheGuestById() throws Exception {
 
-        guestRepository.deleteById(1);
-
         mockMvc.perform(delete("/guests/1"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     public void deleteTheEventById() throws Exception {
-
-        eventRepository.deleteById(1);
 
         mockMvc.perform(delete("/events/1"))
                 .andExpect(status().isNoContent());
