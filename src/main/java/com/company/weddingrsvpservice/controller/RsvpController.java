@@ -1,5 +1,6 @@
 package com.company.weddingrsvpservice.controller;
 
+import com.company.weddingrsvpservice.exceptions.NotFoundException;
 import com.company.weddingrsvpservice.model.RsvpEvent;
 import com.company.weddingrsvpservice.model.RsvpGuests;
 import com.company.weddingrsvpservice.repository.EventRepository;
@@ -51,7 +52,11 @@ public class RsvpController {
     public Optional<RsvpGuests> findGuestById (@PathVariable int id) {
         Optional<RsvpGuests> foundById = guestRepository.findById(id);
 
-        return foundById;
+        if(foundById == null) {
+            throw new NotFoundException("Id's do not match - please enter a valid id.");
+        } else {
+            return foundById;
+        }
     }
 
 
@@ -92,7 +97,7 @@ public class RsvpController {
         Optional<RsvpEvent> foundEvent = eventRepository.findById(id);
 
         if(foundEvent == null) {
-            return null;
+            throw new NotFoundException("Id's do not match - please enter a valid id.");
         } else {
             return foundEvent;
         }
@@ -110,7 +115,10 @@ public class RsvpController {
     @DeleteMapping("/guests/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteGuestById(@PathVariable int id) {
+
         guestRepository.deleteById(id);
+
+
     }
 
     @PutMapping("/events/{id}")
@@ -125,6 +133,7 @@ public class RsvpController {
     @DeleteMapping("/events/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteEventById(@PathVariable int id) {
+
         eventRepository.deleteById(id);
     }
 }
