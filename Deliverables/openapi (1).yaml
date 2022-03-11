@@ -1,0 +1,428 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /guests/{id}:
+    get:
+      tags:
+        - rsvp-controller
+      operationId: findGuestById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RsvpGuests'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+    put:
+      tags:
+        - rsvp-controller
+      operationId: updateGuestById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RsvpGuests'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+    delete:
+      tags:
+        - rsvp-controller
+      operationId: deleteGuestById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+  /events/{id}:
+    get:
+      tags:
+        - rsvp-controller
+      operationId: findEventById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RsvpEvent'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+    put:
+      tags:
+        - rsvp-controller
+      operationId: updateEventById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RsvpEvent'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+    delete:
+      tags:
+        - rsvp-controller
+      operationId: deleteEventById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+  /rsvpGuest:
+    post:
+      tags:
+        - rsvp-controller
+      operationId: createGuest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RsvpGuests'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RsvpGuests'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+  /rsvpEvent:
+    post:
+      tags:
+        - rsvp-controller
+      operationId: createEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RsvpEvent'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RsvpEvent'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+  /rsvpEvent/addEventGuest:
+    post:
+      tags:
+        - rsvp-controller
+      operationId: createEventAndGuest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RsvpEvent'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RsvpEvent'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+  /guests:
+    get:
+      tags:
+        - rsvp-controller
+      operationId: getAllGuests
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RsvpGuests'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+  /events:
+    get:
+      tags:
+        - rsvp-controller
+      operationId: getAllEvents
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RsvpEvent'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CustomErrorResponse'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/CustomErrorResponse'
+components:
+  schemas:
+    CustomErrorResponse:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+        status:
+          type: integer
+          format: int32
+        errorCode:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    RsvpGuests:
+      required:
+        - attending
+        - guestEmail
+        - guestName
+        - totalInvited
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        guestId:
+          type: integer
+          format: int32
+        guestName:
+          type: string
+        guestEmail:
+          type: string
+        totalInvited:
+          type: integer
+          format: int32
+        attending:
+          type: boolean
+    RsvpEvent:
+      required:
+        - eventName
+        - location
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        guests:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RsvpGuests'
+        eventName:
+          type: string
+        location:
+          type: string
