@@ -136,77 +136,23 @@ public class RsvpController {
 
         eventRepository.deleteById(id);
     }
+    
+    @GetMapping("/rsvpGuests/{email}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<RsvpGuests> searchGuestByEmail(@RequestBody @PathVariable String email) {
+        List<RsvpGuests> guests = guestRepository.findAll();
+        List<RsvpGuests> newList = null;
+        for (RsvpGuests e : guests) {
+            if (e.getGuestEmail().equals(email)) {
+                e.setId(e.getId());
+                newList = Arrays.asList(e);
+            }
+        }
+        return newList;
+    }
 }
 
 
-
-        //   List<RsvpGuests> guestsList = (List<RsvpGuests>) guestRepository.findAll();
-
-        //String email_Service = String.valueOf(this.rsvpService.findAllByEmail(email));
-//        RsvpGuests found = null;
-//        for (RsvpGuests guestEmail : guestsList) {
-//            if (email_Service == email) {
-//                found = guestEmail;
-//                break;
-//            }
-//        }
-//        return found;
-
-
-
-//    @GetMapping("/rsvpGuest/search/{email}")
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public List<RsvpViewModel> displayByEmail(@RequestBody @PathVariable String email) {
-//        List<RsvpViewModel> guestEmail = rsvpService.findAllByEmail(email);
-//
-//
-//
-//        return guestEmail;
-//    }
-//        @GetMapping("/rsvpEvent/{id}")
-//        @ResponseStatus(value = HttpStatus.OK)
-//        public EventsViewModel getEventsById ( @PathVariable int id){
-//
-//            EventsViewModel evm = rsvpService.findById(id);
-//
-//            public RsvpGuests createGuest (@RequestBody RsvpGuests guests){
-//                //guest.getGuest_event_id(event.getId());
-//                // guest.setGuest_event_id(event.getId());
-//
-//                return guestRepository.save(guests);
-//            }
-//
-////    @GetMapping("/rsvpGuest/search/{email}")
-////    @ResponseStatus(value = HttpStatus.OK)
-////    public List<RsvpViewModel> displayByEmail(@PathVariable String email) {
-////        List<RsvpViewModel> guestEmail = rsvpService.findAllByEmail(email);
-////
-////
-////        return guestEmail;
-////    }
-//
-//            @GetMapping("/rsvpEvent/{id}")
-//            @ResponseStatus(value = HttpStatus.OK)
-//            public EventsViewModel getEventsById ( @PathVariable int id){
-//                EventsViewModel evm = rsvpService.findById(id);
-//
-//
-//                return evm;
-//            }
-//
-//        }
-
-//    @GetMapping("/event/{email}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public RsvpGuests getGuestsList(@PathVariable String guestEmail) {
-//        RsvpGuests guestsList = guestRepository.findByEmail(guestEmail);
-//
-//        if(guestsList == null) {
-//            return null;
-//        } else {
-//            return guestsList;
-//        }
-//    }
 
 
 
